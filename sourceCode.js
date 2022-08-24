@@ -1000,7 +1000,11 @@
 // [...array]
 
 // String → Array
-// [...'string']
+// [...string]
+
+// let a = "akshat"
+// let ans = [...a];
+
 
 // Node List → Array
 // [...nodeList]
@@ -1015,10 +1019,10 @@
 // let b = [...new Set(a)];
 // console.log(b);
 
-// new Set(a) -> converts an array into object so to convert an object to array 
-// we use the following syntax :-  square brackets([]) with spread operator(...) on that object
-
+// new Set(a) -> converts an array into object  => //* console.log(new Set(a));
+// So to convert an object to array, we use the following syntax :-  square brackets([]) with spread operator(...) on that object
 Syntax :- [...new Set([1,2,3,3,2])]
+//* console.log([...new Set(a)]);
 
 
 
@@ -1053,10 +1057,14 @@ Syntax :- [...new Set([1,2,3,3,2])]
 
 // const person = { name: 'Fred', age: 87 };
 
-// console.log( Object.values(person) );
-// const arrObj =  Object.entries(person);
-// console.log(arrObj);
-// console.log(Object.fromEntries(arrObj));
+//? get the object values in array form
+  // console.log( Object.values(person) );       //* o/p  [ 'Fred', 87 ]
+
+//? convert obj to array
+  // const arrObj =  Object.entries(person);    
+  // console.log(arrObj);                        //* o/p  [ [ 'name', 'Fred' ], [ 'age', 87 ] ]
+//? convert array back to obj                       
+  // console.log(Object.fromEntries(arrObj));   //* o/p  { name: 'Fred', age: 87 }
 
 
 
@@ -1529,7 +1537,7 @@ Syntax :- [...new Set([1,2,3,3,2])]
 //   const updateMonth = months.splice(indexOfMonth,1,'june');
 //   console.log(months);
 // }else{
-//   console.log('No such data found');
+//   console.log('No such data found');+
 // }
 
 
@@ -1558,7 +1566,7 @@ Syntax :- [...new Set([1,2,3,3,2])]
 //* Array.prototype.map() 🙋‍♂️
 
 // let newArray = arr.map(callback(currentValue[, index[, array]]) {
-//     // return element for newArray, after executing something
+     // return element for newArray, after executing something
 //   }[, thisArg]);
 
 //? Returns a new array containing the results of calling a function on every element in this array. 
@@ -1647,6 +1655,8 @@ Syntax :- [...new Set([1,2,3,3,2])]
 //       return accumulator += curElem;
 // },7)
 // console.log(sum);
+//* here 7 is the starting value of accumulator as let acc = 7 => accum += arr[i] => 20
+
 
 //*Important
 // As upcoming updates reduce the functionality of flattening of  array using reduce functions
@@ -1664,9 +1674,9 @@ Syntax :- [...new Set([1,2,3,3,2])]
 //         ['zone_7', ['zone_7', ['zone_7', 'zone_8']]]
 //     ];
 
-// // let flatArr = arr.reduce((accum, currVal)  => { 
-// //           return accum.concat(currVal);
-// // })
+// let flatArr = arr.reduce((accum, currVal)  => { 
+//           return accum.concat(currVal);
+// })
 
 // console.log(arr.flat(Infinity));
 
@@ -1694,7 +1704,7 @@ Syntax :- [...new Set([1,2,3,3,2])]
 // let myName = "vinod thapa";
 // let myChannelName = 'vinod thapa';
 
-// // let ytName = new String("Thapa Technical");
+// let ytsName = new String("Thapa Technical");
 // let ytName = 'thapa technical';
 
 // console.log(myName);
@@ -1729,7 +1739,7 @@ Syntax :- [...new Set([1,2,3,3,2])]
 
 //* 👉 Finding a String in a String
 
-// String.prototype.indexOf(searchValue [, fromIndex]) 🙋‍♂️
+// String.prototype.indexOf(searchValue ,[fromIndex]) 🙋‍♂️
 
 // The indexOf() method returns the index of (the position of) the first
 //  occurrence of a specified text in a string
@@ -1738,16 +1748,16 @@ Syntax :- [...new Set([1,2,3,3,2])]
 // console.log(myBioData.indexOf("t", 6));
 
 
-// // JavaScript counts positions from zero.
-// // 0 is the first position in a string, 1 is the second, 2 is the third ...
+// JavaScript counts positions from zero.
+// 0 is the first position in a string, 1 is the second, 2 is the third ...
 
 
 
 
 
-// // String.prototype.lastIndexOf(searchValue [, fromIndex]) 🙋‍♂️
-// // Returns the index within the calling String object of the 
-// // last occurrence of searchValue, or -1 if not found.
+// String.prototype.lastIndexOf(searchValue [, fromIndex]) 🙋‍♂️
+// Returns the index within the calling String object of the 
+// last occurrence of searchValue, or -1 if not found.
 
 
 // const myBioData =  'I am the thapa Technical';
@@ -1786,15 +1796,14 @@ Syntax :- [...new Set([1,2,3,3,2])]
 //? substr(start, length)
 
 //* The slice() Method 🙋‍♂️
-//? slice() extracts a part of a string and returns the extracted part 
-// in a new string.
+//? slice() extracts a part of a string and returns the extracted part in a new string.
 
 // The method takes 2 parameters: the start position, 
 // and the end position (end not included).
 
 // var str = "Apple, Bananaa, Kiwi, mango";
 
-// // let res = str.slice(0,4);
+// let res = str.slice(0,4);
 // let res = str.slice(7);
 // console.log(res);
 
@@ -1846,7 +1855,7 @@ Syntax :- [...new Set([1,2,3,3,2])]
 
 
 // var str = "Apple, Bananaa, Kiwi";
-// // let res = str.substr(7,-2);
+// let res = str.substr(7,-2);
 // let res = str.substr(-4);
 // console.log(res);
 
@@ -3147,7 +3156,7 @@ Syntax :- [...new Set([1,2,3,3,2])]
 
 
 
-//* 7️⃣ AJAX Call using XMLHttprequest 
+//* 7️⃣ AJAX Call using XMLHttpRequest 
 
 //* how to handled with the events and callback 
 
