@@ -91,6 +91,9 @@ The variable is in a "temporal dead zone" from the start of the block until it i
 
 2. Anonymous function and Fat Arrow function ()=>
 Anonymous function and Fat Arrow function act just like a variable in a memory and variables are undefiend in memory at first ie these two types get undefiend when hoisted
+and we can't call an undefined varibale ie 
+a();  // its like calling an undefiend variable which gives error
+var a = ()=>{}
 
 
 
@@ -149,11 +152,11 @@ var b = 100;
 
 so let understand what happens inside
 as we know the variables and func are stored in memory with undefined
-but we see that b(var) is initialized undefined in gloabal memory but a(let) initialized undeifned in another meory space
-and we cannot access that memory space withput initializing the variables
+but we see that b(var) is initialized undefined in global memory but a(let) initialized undefined in another meory space
+and we cannot access that memory space withput initializing the 'let' variable.
 
-Temporal Dead Zone
-The time taken by a variable after hoisted from being undefined in seperate memory space to get initialized with any value is called Temporal dead zone.
+>> Temporal Dead Zone :-
+The time taken by a let variable after hoisted from being undefined in seperate memory space to get initialized with any value is called Temporal dead zone.
 
 And when you try to access a variable inside temporal dead zone ie(hoisted but not initialized) it gives a refernce error
 
@@ -165,11 +168,11 @@ let a = 10;
 as 1st line :-  a is still in temporal dead zone
 
 
-Refernce Error  :-
+** Refernce Error  :-
 if any variable is not defined
 if any varibale is accessed before initialization (in case of let);
 
-Syntax Error :- 
+** Syntax Error :- 
 Any syntactical Mistakes
 or any redeclaration of any variable (not possible in let but possible in var)
 
@@ -217,8 +220,8 @@ and
 both acts same
 
 
-NOTE :- variables with var has memory stored in global memory space where the varibales with block scope get a new different memeory space
-everytime a new block is created thats why the value is not chnged when control comes out of block for a block variable (let n const)
+NOTE :- variables with var has memory stored in global memory space whereas the varibales with block scope like let and const get a new different memory space
+everytime a new block is created thats why the value is not as same as it is in block, when control comes out of block for a block variable (let n const)
 
 
 
@@ -252,8 +255,8 @@ the function print "hello" first ie it doesnot wait for setTimeout function to g
 setTimeout func. when invoked, enables a timer and it set aside from call stack and then control goes to next line here it is log("hello");
 and then prints setTimeout content after the timer is over here it give 5 as result.
 
-so it means even after executing the function x() completely the value of 'a' is still stores with setTimeout func
-it meas a closure is there which bundled the function and its lexical environment together to get value a = 5 not undefiend, even after function move to next line ie console.log("hello");
+so it means even after executing the function x() completely, the value of 'a' is still stores with setTimeout func
+it means a closure is there which bundled the function and its lexical environment together to get value a as 5 not undefiend, even after function move to next line ie console.log("hello");
 
 
 function x(){
@@ -281,7 +284,7 @@ x();  //o/p 3 3 3
 Explaination :- what happen here is that after evry iteration there timer is set for an amount of time but the loops goes on 
 incrementing the value of i and stop when cond is false.
 So the i kept incrementing by 1 and i is updating in a same reference because var has function level scope after loop end var i=3
-and when the timer sets off it prints the updated value of i present due to closure because after loop end function is over 
+and when the timer sets off it prints the updated value of i present due to closure because after loop ends, function is over 
 but closure holds func and lexical environment which contains updated value of i as 3
 
 thats why it gave the same result
@@ -306,7 +309,7 @@ thay's why o/p is 1 2 3
 
 >> If an interviewer asks to do the same but not using let then how to update i value.
 ANS :-  by giving the var i a new function scope everytime
-thats why we make a function as var has function level scope only
+thats why we make a function, as var has function level scope only
 So value of i inside close() remains same but when comes out of close() there is new copy of i every time function close() invokes
 function z() {
     for (var i = 0; i < 3; i++) {
@@ -332,10 +335,9 @@ function a(){
 var b = function (){
 	console.log("hello);
 }
-
 function used with a value is func expression;
 
-** Difference between these two is in Function hoisting
+** Difference between these two is in Function hoisting 
 
  when we call function a(); before defined it
  then it simply call the function
@@ -387,7 +389,7 @@ VIDEO 18 NAMASTE JAVASCRIPT PART 1
 >> Callback Functions (IMPORTANT) :-
 The functions which are taken as parameters are callback functions
 
-Now we understand how browser works behind teh scene when a callback function appears
+Now we understand how browser works behind the scene when a callback function appears
 
 Things below are known as WEB APIs and thery are not JavaScript
 1. setTimeout()
@@ -404,7 +406,7 @@ As we know the function comes in call stack and remove one by one after getting 
 
 let us understand about Event Loop Callback Queue :-
 
-1. Event Loop :- The function of event loop is tho check that call stack is empty or not along with
+1. Event Loop :- The function of event loop is to check that call stack is empty or not along with
 it also checks that there is not any function in Callback Queue
 
 if the callback queue is not empty and the call stack is empty then the event loop takes the function from queue and send it to call stack for execution
@@ -429,7 +431,7 @@ first main function came in call stack
 "start" is printed
 after that setTimeout function is invoked and call the Web API to get timer started
 so inside web API environment a callback is registered along with the running timer
-then control come to next step as it did not wait fro setTimeout to be complete because js is synchronous
+then control come to next step as it did not wait for setTimeout to be complete because js is synchronous
 "end" is printed
 
 when the timer get over then the call back function added to callback queue
@@ -459,7 +461,7 @@ and event loop check both conditon and if the conditon satisfies
 then it added the callback func to call stack and gets executed
 
 
-NOTE either the event is invokes or the timer is end or not UNTIL the event loop conditon is satisfies
+NOTE either the event is invokes or the timer is end or not but UNTIL the event loop conditon is satisfies
 which are 
 1. The call stack must be empty. 
 2. There must a func is callback queue
@@ -467,12 +469,11 @@ the callback func doesnot executed.
 
 
 Now there is one more thing similar to callback Queue which is MicroStack Queue
-works same as callback queue with event loop and call stack
+which works as same as callback queue with event loop and call stack
 
 The only Difference between the callback queue and MicroStack queue is that 
-Priority of MicroStack is more than callback queue
-
-Ans the callback function which comes through Promises are added to MicroStack Queue and other than that
+1. Priority of MicroStack is more than callback queue
+2. The callback function which comes through Promises are added to MicroStack Queue and other than that
 that remaining callback func are added to callback queue.
 
 For Example
@@ -512,12 +513,12 @@ inside call stack :-
 Now first 
 "hello" is print
 setTimeout goes to call webAPI and then after timer gets over move to callback Queue
-the here it takes 10 sec to do executing code and then
+then here it takes 10 sec to executing code and then
 "complete" is print
 
 as we know the setTimeout func takes 5 sec to execute but due to millions of lines of code it
 executes after 10 sec so this is called Concurrency Model
-event it is written 5 sec but takes 10 sec
+setTimeOut event is to be executed after written 5 sec but takes 10 sec due to large processing of millions of lines of code
 so we can say setTimeout takes atleast 5 sec to execute and it doesnot execute before 5 sec for sure 
 
-But we can't change that as it is the flow of js lang as it is synchronous and single threaded language
+AND we can't change that as it is the flow of JS lang as it is synchronous and single threaded language
